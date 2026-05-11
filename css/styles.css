@@ -1,0 +1,475 @@
+/* ============================================
+   Pinnacle Shield Insurance - Custom Styles
+   ============================================ */
+
+/* CSS Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ============================================
+   Navigation
+   ============================================ */
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.nav-link {
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #ffc107 !important;
+}
+
+/* ============================================
+   Hero Section
+   ============================================ */
+.hero {
+    background: linear-gradient(135deg, #0056b3, #003d82);
+    padding: 80px 0;
+    min-height: 400px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.hero .lead {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ============================================
+   Cards & Card Icons
+   ============================================ */
+.card-icon {
+    font-size: 2.5rem;
+}
+
+.card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   Insurance Types Section
+   ============================================ */
+.insurance-icon {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.insurance-card {
+    border: 2px solid #e9ecef;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.insurance-card:hover {
+    border-color: #0056b3;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   Testimonials Section
+   ============================================ */
+.testimonials .card {
+    border-left: 4px solid #0056b3;
+}
+
+/* ============================================
+   Quote Page - Type Selector
+   ============================================ */
+.type-card {
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.type-icon {
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+}
+
+.btn-check:checked + .type-card {
+    transform: scale(1.03);
+}
+
+/* ============================================
+   Quote Page - Results
+   ============================================ */
+.result-premium-box {
+    padding: 20px;
+    border-radius: 8px;
+    background: #f8f9fa;
+    margin: 10px 0;
+}
+
+.result-premium-box h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+#breakdown-body tr td:last-child {
+    font-weight: 600;
+}
+
+/* ============================================
+   About Page - Values
+   ============================================ */
+.value-item {
+    flex: 1 1 200px;
+    max-width: 250px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease;
+}
+
+.value-item:hover {
+    transform: translateY(-3px);
+}
+
+.value-icon {
+    font-size: 2.5rem;
+}
+
+/* ============================================
+   About Page - Team Avatars
+   ============================================ */
+.team-avatar {
+    width: 80px;
+    height: 80px;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* ============================================
+   FAQ Page - Search
+   ============================================ */
+#faq-search {
+    border: 2px solid #dee2e6;
+    border-radius: 50px;
+    padding-left: 20px;
+    transition: border-color 0.2s ease;
+}
+
+#faq-search:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 0 0.2rem rgba(0, 86, 179, 0.15);
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+.hidden {
+    display: none;
+}
+
+/* ============================================
+   Bonus D: Animations & Transitions
+   ============================================ */
+
+/* Fade-in animation for results section */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+/* Loading spinner size */
+.spinner-lg {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* Card hover animation enhancement */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Button press animation */
+.btn {
+    transition: all 0.2s ease;
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+/* ============================================
+   Bonus E: Progress Indicator
+   ============================================ */
+.progress-steps {
+    padding: 10px 0;
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.step-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #dee2e6;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step-label {
+    font-size: 0.8rem;
+    margin-top: 5px;
+    color: #6c757d;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.progress-step.active .step-circle {
+    background: #0056b3;
+    color: white;
+    box-shadow: 0 0 0 4px rgba(0, 86, 179, 0.2);
+}
+
+.progress-step.active .step-label {
+    color: #0056b3;
+    font-weight: 700;
+}
+
+.progress-step.completed .step-circle {
+    background: #198754;
+    color: white;
+}
+
+.progress-step.completed .step-label {
+    color: #198754;
+}
+
+.progress-line {
+    flex: 1;
+    height: 3px;
+    background: #dee2e6;
+    margin: 0 8px;
+    margin-bottom: 20px;
+    transition: background 0.3s ease;
+}
+
+.progress-line.active {
+    background: #198754;
+}
+
+/* ============================================
+   Bonus A: Comparison Section
+   ============================================ */
+#comparison-section .card {
+    min-height: 200px;
+}
+
+.compare-highlight {
+    background-color: #d4edda;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* ============================================
+   Bonus B: Saved Quotes
+   ============================================ */
+.saved-quote-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.saved-quote-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.saved-quote-card .badge {
+    font-size: 0.75rem;
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+footer a:hover {
+    color: #ffc107 !important;
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+/* Tablet */
+@media (max-width: 768px) {
+    .hero {
+        padding: 50px 20px;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero .lead {
+        font-size: 1rem;
+    }
+
+    .value-item {
+        max-width: 100%;
+    }
+
+    .team-avatar {
+        width: 60px;
+        height: 60px;
+        font-size: 1.2rem;
+    }
+
+    .result-premium-box h2 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .hero {
+        padding: 30px 15px;
+        min-height: auto;
+    }
+
+    .hero h1 {
+        font-size: 1.6rem;
+    }
+
+    .type-card {
+        padding: 10px !important;
+    }
+
+    .type-icon {
+        font-size: 1.5rem;
+    }
+
+    .result-premium-box {
+        padding: 12px;
+    }
+
+    .result-premium-box h2 {
+        font-size: 1.5rem;
+    }
+
+    footer .row > div {
+        text-align: center;
+    }
+}
+
+/* ============================================
+   Bonus C: Print Styles
+   ============================================ */
+@media print {
+    header, footer, #quote-form-section, #submit-section,
+    #new-quote-btn, #save-quote-btn, #compare-quote-btn, #print-quote-btn,
+    #loading-spinner, #comparison-section, #saved-quotes-section,
+    .progress-steps, .btn {
+        display: none !important;
+    }
+
+    #quote-results {
+        display: block !important;
+    }
+
+    #quote-results.hidden {
+        display: block !important;
+    }
+
+    body {
+        color: #000;
+        background: #fff;
+        font-size: 12pt;
+    }
+
+    .card {
+        border: 1px solid #333 !important;
+        box-shadow: none !important;
+    }
+
+    .card-header {
+        background: #333 !important;
+        color: #fff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .table {
+        border-collapse: collapse;
+    }
+
+    .table th, .table td {
+        border: 1px solid #333 !important;
+        padding: 8px;
+    }
+
+    .result-premium-box {
+        border: 1px solid #ccc;
+    }
+
+    /* Add company branding for print */
+    #quote-results::before {
+        content: "🛡️ Pinnacle Shield Insurance — Official Quote";
+        display: block;
+        text-align: center;
+        font-size: 18pt;
+        font-weight: 700;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #333;
+    }
+
+    #quote-results::after {
+        content: "This is a personalized estimate. Final rates may vary. Contact us at 1-800-555-SHIELD for more details.";
+        display: block;
+        text-align: center;
+        font-size: 9pt;
+        color: #666;
+        margin-top: 30px;
+        padding-top: 10px;
+        border-top: 1px solid #ccc;
+    }
+}
