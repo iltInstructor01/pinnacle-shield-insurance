@@ -159,13 +159,13 @@
     }
 
     function formatMultiplier(multiplier) {
-        if (multiplier === 1.0) return 'No impact (�1.0)';
+        if (multiplier === 1.0) return 'No impact (×1.0)';
         if (multiplier < 1.0) {
             var discount = Math.round((1 - multiplier) * 100);
-            return '-' + discount + '% discount (�' + multiplier.toFixed(2) + ')';
+            return '-' + discount + '% discount (×' + multiplier.toFixed(2) + ')';
         }
         var surcharge = Math.round((multiplier - 1) * 100);
-        return '+' + surcharge + '% surcharge (�' + multiplier.toFixed(2) + ')';
+        return '+' + surcharge + '% surcharge (×' + multiplier.toFixed(2) + ')';
     }
 
     // ============================================
@@ -250,13 +250,13 @@
         var ageLabel = '';
         if (age < 25) {
             ageFactor = 1.5;
-            ageLabel = 'Under 25  young driver surcharge';
+            ageLabel = 'Under 25 — young driver surcharge';
         } else if (age <= 65) {
             ageFactor = 1.0;
-            ageLabel = '2565  standard rate';
+            ageLabel = '25–65 — standard rate';
         } else {
             ageFactor = 1.3;
-            ageLabel = 'Over 65  senior surcharge';
+            ageLabel = 'Over 65 — senior surcharge';
         }
 
         // Vehicle age factor
@@ -266,24 +266,24 @@
         var vehicleLabel = '';
         if (vehicleAge < 3) {
             vehicleFactor = 1.3;
-            vehicleLabel = 'Under 3 years old  newer vehicle';
+            vehicleLabel = 'Under 3 years old — newer vehicle';
         } else if (vehicleAge <= 10) {
             vehicleFactor = 1.0;
-            vehicleLabel = '310 years old  standard rate';
+            vehicleLabel = '3–10 years old — standard rate';
         } else {
             vehicleFactor = 0.8;
-            vehicleLabel = 'Over 10 years old  lower value';
+            vehicleLabel = 'Over 10 years old — lower value';
         }
 
         // Mileage factor
         var mileageFactor = 1.0;
         var mileageLabel = '';
         var mileageMap = {
-            'under5k': { factor: 0.8, label: 'Under 5,000  low mileage discount' },
-            '5k-10k': { factor: 1.0, label: '5,00010,000  standard' },
-            '10k-15k': { factor: 1.1, label: '10,00115,000  moderate mileage' },
-            '15k-20k': { factor: 1.3, label: '15,00120,000  high mileage' },
-            'over20k': { factor: 1.5, label: 'Over 20,000  very high mileage' }
+            'under5k': { factor: 0.8, label: 'Under 5,000 — low mileage discount' },
+            '5k-10k': { factor: 1.0, label: '5,000–10,000 — standard' },
+            '10k-15k': { factor: 1.1, label: '10,001–15,000 — moderate mileage' },
+            '15k-20k': { factor: 1.3, label: '15,001–20,000 — high mileage' },
+            'over20k': { factor: 1.5, label: 'Over 20,000 — very high mileage' }
         };
         if (mileageMap[mileage]) {
             mileageFactor = mileageMap[mileage].factor;
@@ -294,7 +294,7 @@
         var recordFactor = 1.0;
         var recordLabel = '';
         var recordMap = {
-            'clean': { factor: 1.0, label: 'Clean record  best rate' },
+            'clean': { factor: 1.0, label: 'Clean record — best rate' },
             '1ticket': { factor: 1.2, label: '1 ticket' },
             '2tickets': { factor: 1.5, label: '2+ tickets' },
             'accident': { factor: 1.8, label: 'Accident in last 3 years' }
@@ -407,7 +407,7 @@
         var coverage = getSelectedRadioValue('home-coverage');
         var name = document.getElementById('home-name').value.trim();
 
-        // Base rate: home value � 0.003 / 12
+        // Base rate: home value × 0.003 / 12
         var baseRate = (homeValue * 0.003) / 12;
 
         // Year built factor
@@ -415,23 +415,23 @@
         var yearLabel = '';
         if (yearBuilt < 1970) {
             yearFactor = 1.4;
-            yearLabel = 'Before 1970  older construction';
+            yearLabel = 'Before 1970 — older construction';
         } else if (yearBuilt < 2000) {
             yearFactor = 1.1;
-            yearLabel = '19701999  moderate age';
+            yearLabel = '1970–1999 — moderate age';
         } else {
             yearFactor = 1.0;
-            yearLabel = '2000+  modern construction';
+            yearLabel = '2000+ — modern construction';
         }
 
         // Construction factor
         var constructionFactor = 1.0;
         var constructionLabel = '';
         var constructionMap = {
-            'wood': { factor: 1.2, label: 'Wood frame  higher risk' },
-            'brick': { factor: 1.0, label: 'Brick  standard' },
-            'concrete': { factor: 0.9, label: 'Concrete  lower risk' },
-            'steel': { factor: 0.85, label: 'Steel  lowest risk' }
+            'wood': { factor: 1.2, label: 'Wood frame — higher risk' },
+            'brick': { factor: 1.0, label: 'Brick — standard' },
+            'concrete': { factor: 0.9, label: 'Concrete — lower risk' },
+            'steel': { factor: 0.85, label: 'Steel — lowest risk' }
         };
         if (constructionMap[construction]) {
             constructionFactor = constructionMap[construction].factor;
@@ -468,12 +468,12 @@
             monthly: monthly,
             annual: monthly * 12,
             breakdown: [
-                { factor: 'Base Rate', value: formatCurrency(homeValue) + ' home � 0.3%/yr', impact: formatCurrency(baseRate) + '/month' },
+                { factor: 'Base Rate', value: formatCurrency(homeValue) + ' home × 0.3%/yr', impact: formatCurrency(baseRate) + '/month' },
                 { factor: 'Year Built (' + yearBuilt + ')', value: yearLabel, impact: formatMultiplier(yearFactor) },
                 { factor: 'Construction (' + construction + ')', value: constructionLabel, impact: formatMultiplier(constructionFactor) },
-                { factor: 'Size (' + sqft.toLocaleString() + ' sq ft)', value: sqft.toLocaleString() + ' � $0.01', impact: '+' + formatCurrency(sizeAdditional) + '/month' },
-                { factor: 'Security System', value: hasSecurity ? 'Yes' : 'No', impact: hasSecurity ? '-5% discount (�0.95)' : 'No discount' },
-                { factor: 'Fire Sprinklers', value: hasSprinklers ? 'Yes' : 'No', impact: hasSprinklers ? '-8% discount (�0.92)' : 'No discount' },
+                { factor: 'Size (' + sqft.toLocaleString() + ' sq ft)', value: sqft.toLocaleString() + ' × $0.01', impact: '+' + formatCurrency(sizeAdditional) + '/month' },
+                { factor: 'Security System', value: hasSecurity ? 'Yes' : 'No', impact: hasSecurity ? '-5% discount (×0.95)' : 'No discount' },
+                { factor: 'Fire Sprinklers', value: hasSprinklers ? 'Yes' : 'No', impact: hasSprinklers ? '-8% discount (×0.92)' : 'No discount' },
                 { factor: 'Coverage Level', value: coverageLabel, impact: formatMultiplier(coverageFactor) }
             ]
         };
@@ -548,7 +548,7 @@
         var coverage = getSelectedRadioValue('life-coverage');
         var name = document.getElementById('life-name').value.trim();
 
-        // Base rate: coverage � 0.0005 / 12
+        // Base rate: coverage × 0.0005 / 12
         var baseRate = (coverageAmount * 0.0005) / 12;
 
         // Age factor
@@ -556,30 +556,30 @@
         var ageLabel = '';
         if (age <= 30) {
             ageFactor = 1.0;
-            ageLabel = '1830  lowest risk';
+            ageLabel = '18–30 — lowest risk';
         } else if (age <= 45) {
             ageFactor = 1.5;
-            ageLabel = '3145  moderate risk';
+            ageLabel = '31–45 — moderate risk';
         } else if (age <= 60) {
             ageFactor = 2.5;
-            ageLabel = '4660  higher risk';
+            ageLabel = '46–60 — higher risk';
         } else {
             ageFactor = 4.0;
-            ageLabel = '6185  highest risk';
+            ageLabel = '61–85 — highest risk';
         }
 
         // Smoker factor
         var smokerFactor = (smoker === 'yes') ? 2.0 : 1.0;
-        var smokerLabel = (smoker === 'yes') ? 'Smoker  doubled rate' : 'Non-smoker  standard rate';
+        var smokerLabel = (smoker === 'yes') ? 'Smoker — doubled rate' : 'Non-smoker — standard rate';
 
         // Exercise factor
         var exerciseFactor = 1.0;
         var exerciseLabel = '';
         var exerciseMap = {
             'rarely': { factor: 1.3, label: 'Rarely exercises' },
-            '1-2': { factor: 1.1, label: '12 times/week' },
-            '3-4': { factor: 1.0, label: '34 times/week  standard' },
-            '5+': { factor: 0.9, label: '5+ times/week  active discount' }
+            '1-2': { factor: 1.1, label: '1–2 times/week' },
+            '3-4': { factor: 1.0, label: '3–4 times/week — standard' },
+            '5+': { factor: 0.9, label: '5+ times/week — active discount' }
         };
         if (exerciseMap[exercise]) {
             exerciseFactor = exerciseMap[exercise].factor;
@@ -623,11 +623,11 @@
             monthly: monthly,
             annual: monthly * 12,
             breakdown: [
-                { factor: 'Base Rate', value: formatCurrency(coverageAmount) + ' coverage � 0.05%/yr', impact: formatCurrency(baseRate) + '/month' },
+                { factor: 'Base Rate', value: formatCurrency(coverageAmount) + ' coverage × 0.05%/yr', impact: formatCurrency(baseRate) + '/month' },
                 { factor: 'Age (' + age + ')', value: ageLabel, impact: formatMultiplier(ageFactor) },
                 { factor: 'Smoker Status', value: smokerLabel, impact: formatMultiplier(smokerFactor) },
                 { factor: 'Exercise Frequency', value: exerciseLabel, impact: formatMultiplier(exerciseFactor) },
-                { factor: 'Pre-existing Conditions', value: hasConditions ? 'Yes' : 'No', impact: hasConditions ? '+50% surcharge (�1.50)' : 'No impact (�1.0)' },
+                { factor: 'Pre-existing Conditions', value: hasConditions ? 'Yes' : 'No', impact: hasConditions ? '+50% surcharge (×1.50)' : 'No impact (×1.0)' },
                 { factor: 'Gender', value: genderLabel, impact: formatMultiplier(genderFactor) },
                 { factor: 'Coverage Level', value: coverageLevelLabel, impact: formatMultiplier(coverageLevelFactor) }
             ]
@@ -769,10 +769,10 @@
 
         // Visual feedback
         if (saveQuoteBtn) {
-            saveQuoteBtn.textContent = ' Saved!';
+            saveQuoteBtn.textContent = '✅ Saved!';
             saveQuoteBtn.disabled = true;
             setTimeout(function () {
-                saveQuoteBtn.textContent = '=� Save Quote';
+                saveQuoteBtn.textContent = '💾 Save Quote';
                 saveQuoteBtn.disabled = false;
             }, 2000);
         }
@@ -850,7 +850,7 @@
 
             var deleteBtn = document.createElement('button');
             deleteBtn.className = 'btn btn-outline-danger btn-sm';
-            deleteBtn.textContent = '=� Delete';
+            deleteBtn.textContent = '🗑️ Delete';
             deleteBtn.addEventListener('click', function () {
                 deleteSavedQuote(quote.id);
             });
@@ -941,7 +941,7 @@
             var savingsP = document.createElement('p');
             savingsP.className = 'compare-highlight text-center mt-2';
             var savings = Math.abs(comparisonQuotes[0].monthly - comparisonQuotes[1].monthly);
-            savingsP.textContent = ' Lower by ' + formatCurrency(savings) + '/mo';
+            savingsP.textContent = '✓ Lower by ' + formatCurrency(savings) + '/mo';
             cheaperBody.appendChild(savingsP);
         }
 
